@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.dgg.todolist.entity.Todo;
@@ -32,6 +33,11 @@ public class TodoController {
     @GetMapping
     public List<Todo> findAll() {
         return service.findAll();
+    }
+
+    @GetMapping("/priority")
+    public List<Todo> findByPriority(@RequestParam Integer priority) {
+        return service.findByPriority(priority);
     }
 
     @PutMapping

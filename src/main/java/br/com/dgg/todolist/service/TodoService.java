@@ -26,6 +26,12 @@ public class TodoService {
         return repo.findAll(sort);
     }
 
+    public List<Todo> findByPriority(Integer priority) {
+        List<Todo> list = repo.findByPriority(priority);
+
+        return list;
+    }
+
     public List<Todo> update(Todo todo) {
         repo.save(todo);
         return findAll();
