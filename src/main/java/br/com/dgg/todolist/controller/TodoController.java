@@ -35,6 +35,11 @@ public class TodoController {
         return service.findAll();
     }
 
+    @GetMapping("/name")
+    public List<Todo> findByName(String name) {
+        return service.findByName(name);
+    }
+
     @GetMapping("/priority")
     public List<Todo> findByPriority(@RequestParam Integer priority) {
         return service.findByPriority(priority);

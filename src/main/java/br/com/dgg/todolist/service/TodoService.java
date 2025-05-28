@@ -26,6 +26,12 @@ public class TodoService {
         return repo.findAll(sort);
     }
 
+    public List<Todo> findByName(String name) {
+        List<Todo> list = repo.findByNameContainingIgnoreCase(name);
+
+        return list;
+    }
+
     public List<Todo> findByPriority(Integer priority) {
         List<Todo> list = repo.findByPriority(priority);
 

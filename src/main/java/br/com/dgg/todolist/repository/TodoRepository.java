@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.dgg.todolist.entity.Todo;
 
 public interface TodoRepository extends JpaRepository<Todo, Long> {
+    public List<Todo> findByNameContainingIgnoreCase(String name);
+
     public List<Todo> findByPriority(Integer priority);
 }
