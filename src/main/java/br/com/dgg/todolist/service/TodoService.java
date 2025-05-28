@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.dgg.todolist.entity.Todo;
 import br.com.dgg.todolist.repository.TodoRepository;
+import br.com.dgg.todolist.service.exception.ResourceNotFoundException;
 
 @Service
 public class TodoService {
@@ -29,31 +30,39 @@ public class TodoService {
     public List<Todo> findByName(String name) {
         List<Todo> list = repo.findByNameContainingIgnoreCase(name);
 
+        if (list.isEmpty()) {
+            throw new ResourceNotFoundException(name);
+        }
+
         return list;
     }
 
     public List<Todo> findByPriority(Integer priority) {
         List<Todo> list = repo.findByPriority(priority);
 
+        if (list.isEmpty()) {
+            throw new ResourceNotFoundException(priority);
+        }
+
         return list;
     }
 
     public Todo updateName(Long id, String name) {
-        Todo todoName = repo.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
+        Todo todoName = repo.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         todoName.setName(name);
 
         return repo.save(todoName);
     }
 
     public Todo updateDescription(Long id, String desc) {
-        Todo todoDesc = repo.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
+        Todo todoDesc = repo.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         todoDesc.setDescription(desc);
 
         return repo.save(todoDesc);
     }
 
     public Todo updatePriority(Long id, Integer priority) {
-        Todo todoPriority = repo.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
+        Todo todoPriority = repo.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         todoPriority.setPriority(priority);
 
         return repo.save(todoPriority);
