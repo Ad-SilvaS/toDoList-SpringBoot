@@ -45,9 +45,19 @@ public class TodoController {
         return service.findByPriority(priority);
     }
 
-    @PutMapping
-    public List<Todo> update(@RequestBody Todo todo) {
-        return service.update(todo);
+    @PutMapping("/{id}/update-name")
+    public Todo updateName(@PathVariable Long id, @RequestParam String name) {
+        return service.updateName(id, name);
+    }
+
+    @PutMapping("/{id}/update-desc")
+    public Todo updateDescription(@PathVariable Long id, @RequestParam String description) {
+        return service.updateDescription(id, description);
+    }
+
+    @PutMapping("/{id}/update-priority")
+    public Todo updatePriority(@PathVariable Long id, @RequestParam Integer priority) {
+        return service.updatePriority(id, priority);
     }
 
     @DeleteMapping("{id}")

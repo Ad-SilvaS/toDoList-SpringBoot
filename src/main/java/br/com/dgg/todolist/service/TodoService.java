@@ -22,7 +22,7 @@ public class TodoService {
     }
 
     public List<Todo> findAll() {
-        Sort sort = Sort.by("priority").descending().and(Sort.by("name").ascending());
+        Sort sort = Sort.by("priority").ascending().and(Sort.by("name").ascending());
         return repo.findAll(sort);
     }
 
@@ -38,9 +38,25 @@ public class TodoService {
         return list;
     }
 
-    public List<Todo> update(Todo todo) {
-        repo.save(todo);
-        return findAll();
+    public Todo updateName(Long id, String name) {
+        Todo todoName = repo.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
+        todoName.setName(name);
+
+        return repo.save(todoName);
+    }
+
+    public Todo updateDescription(Long id, String desc) {
+        Todo todoDesc = repo.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
+        todoDesc.setDescription(desc);
+
+        return repo.save(todoDesc);
+    }
+
+    public Todo updatePriority(Long id, Integer priority) {
+        Todo todoPriority = repo.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
+        todoPriority.setPriority(priority);
+
+        return repo.save(todoPriority);
     }
 
     public List<Todo> delete(Long id) {
