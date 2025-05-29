@@ -68,6 +68,13 @@ public class TodoService {
         return repo.save(todoPriority);
     }
 
+    public Todo updateAccomplished(Long id, boolean accomplished) {
+        Todo todoAccomplished = repo.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+        todoAccomplished.setAccomplished(accomplished);
+
+        return repo.save(todoAccomplished);
+    }
+
     public List<Todo> delete(Long id) {
         repo.deleteById(id);
         return findAll();

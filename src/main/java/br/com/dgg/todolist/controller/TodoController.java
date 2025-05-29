@@ -60,6 +60,11 @@ public class TodoController {
         return service.updatePriority(id, priority);
     }
 
+    @PutMapping("/{id}/update-accomplished")
+    public Todo updateAccomplished(@PathVariable Long id, @RequestParam boolean accomplished) {
+        return service.updateAccomplished(id, accomplished);
+    }
+
     @DeleteMapping("{id}")
     public List<Todo> delete(@PathVariable("id") Long id) {
         return service.delete(id);
