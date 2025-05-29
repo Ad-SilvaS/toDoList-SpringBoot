@@ -12,6 +12,8 @@ API RESTful para gerenciamento de tarefas com funcionalidades completas de CRUD,
 
 - Spring Data JPA
 
+- MySQL 
+
 - H2 Database (ou outro banco configurável)
 
 - Validação de Dados
