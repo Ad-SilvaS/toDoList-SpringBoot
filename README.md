@@ -38,6 +38,8 @@ API RESTful para gerenciamento de tarefas com funcionalidades completas de CRUD,
 @Entity
 @Table(name = "todos")
 public class Todo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;                        // ID único
     @NotBlank private String name;          // Nome da tarefa (obrigatório)
     @NotBlank private String description;   // Descrição (obrigatória)
